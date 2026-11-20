@@ -267,7 +267,7 @@ if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     document.querySelectorAll(".work-image").forEach((image, index) => {
       gsap.from(image, { clipPath: index % 2 ? "inset(0 0 100% 0)" : "inset(0 100% 0 0)", duration: 1.1, ease: "power3.inOut", scrollTrigger: { trigger: image, start: "top 88%", once: true } });
     });
-    document.querySelectorAll(".work-caption, .price-list article, .comparison article").forEach((item) => {
+    document.querySelectorAll(".work-caption, .price-list article, .comparison article, .testimonial-card").forEach((item) => {
       gsap.from(item, { y: 24, opacity: 0, duration: .9, ease: "power3.out", scrollTrigger: { trigger: item, start: "top 90%", once: true } });
     });
 
