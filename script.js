@@ -111,6 +111,62 @@ const FORM_ENDPOINT = "";
     });
   }
 
+  function initConceptViewer() {
+    const viewer = document.querySelector("#concept-viewer");
+    const links = [...document.querySelectorAll("[data-concept-link]")];
+    if (!viewer || !links.length || typeof viewer.showModal !== "function") return;
+
+    const source = viewer.querySelector(".concept-viewer-source");
+    const image = viewer.querySelector(".concept-viewer-image");
+    const title = viewer.querySelector("#concept-viewer-title");
+    const description = viewer.querySelector(".concept-viewer-description");
+    const count = viewer.querySelector(".concept-viewer-count");
+    const previous = viewer.querySelector(".concept-viewer-prev");
+    const next = viewer.querySelector(".concept-viewer-next");
+    let activeIndex = 0;
+
+    const render = (index) => {
+      activeIndex = (index + links.length) % links.length;
+      const link = links[activeIndex];
+      const thumbnail = link.querySelector(".work-image img");
+      const caption = link.querySelector(".work-caption");
+      const href = link.getAttribute("href");
+      source.srcset = href.replace(/\.jpg$/i, ".webp");
+      source.sizes = "100vw";
+      image.src = href;
+      image.alt = thumbnail?.alt || "Salon website concept";
+      title.textContent = caption?.querySelector("h3")?.textContent || "Website concept";
+      description.textContent = caption?.querySelector("p")?.textContent || "";
+      count.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(links.length).padStart(2, "0")}`;
+      if (window.gsap && !reducedMotion.matches) {
+        gsap.fromTo(image, { opacity: 0, scale: .985 }, { opacity: 1, scale: 1, duration: .45, ease: "power3.out", overwrite: true });
+      }
+    };
+
+    links.forEach((link, index) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        render(index);
+        viewer.showModal();
+        body.classList.add("viewer-open");
+        if (lenis) lenis.stop();
+      });
+    });
+
+    viewer.querySelectorAll("[data-concept-close]").forEach((button) => button.addEventListener("click", () => viewer.close()));
+    previous.addEventListener("click", () => render(activeIndex - 1));
+    next.addEventListener("click", () => render(activeIndex + 1));
+    viewer.addEventListener("click", (event) => { if (event.target === viewer) viewer.close(); });
+    viewer.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") { event.preventDefault(); render(activeIndex - 1); }
+      if (event.key === "ArrowRight") { event.preventDefault(); render(activeIndex + 1); }
+    });
+    viewer.addEventListener("close", () => {
+      body.classList.remove("viewer-open");
+      if (lenis) lenis.start();
+    });
+  }
+
   function finishPreloader(preloader, immediate = false) {
     if (!preloader || preloader.dataset.done === "true") return;
     preloader.dataset.done = "true";
@@ -418,6 +474,7 @@ const FORM_ENDPOINT = "";
     initMenu();
     initProgress();
     initImages();
+    initConceptViewer();
     initCalculator();
     initFaq();
     initContactForm();

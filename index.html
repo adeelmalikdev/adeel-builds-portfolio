@@ -182,7 +182,7 @@
 
       <div class="work-grid">
         <article class="work-item work-item-wide interactive-work">
-          <a href="assets/work-hair-1440.jpg" aria-label="View The Hair Atelier concept image">
+          <a href="assets/work-hair-1440.jpg" data-concept-link aria-label="Open The Hair Atelier concept viewer">
             <div class="work-image image-grade" style="--placeholder:#d6bba4">
               <picture>
                 <source type="image/webp" srcset="assets/work-hair-640.webp 640w, assets/work-hair-960.webp 960w, assets/work-hair-1440.webp 1440w" sizes="(max-width: 767px) 100vw, 66vw">
@@ -194,7 +194,7 @@
         </article>
 
         <article class="work-item interactive-work">
-          <a href="assets/work-aesthetics-1440.jpg" aria-label="View Skin, Perfected concept image">
+          <a href="assets/work-aesthetics-1440.jpg" data-concept-link aria-label="Open Skin, Perfected concept viewer">
             <div class="work-image image-grade" style="--placeholder:#ced6c5">
               <picture>
                 <source type="image/webp" srcset="assets/work-aesthetics-640.webp 640w, assets/work-aesthetics-960.webp 960w, assets/work-aesthetics-1440.webp 1440w" sizes="(max-width: 767px) 100vw, 42vw">
@@ -206,7 +206,7 @@
         </article>
 
         <article class="work-item interactive-work">
-          <a href="assets/work-nails-1440.jpg" aria-label="View The Nail Studio concept image">
+          <a href="assets/work-nails-1440.jpg" data-concept-link aria-label="Open The Nail Studio concept viewer">
             <div class="work-image image-grade" style="--placeholder:#ebc8ca">
               <picture>
                 <source type="image/webp" srcset="assets/work-nails-640.webp 640w, assets/work-nails-960.webp 960w, assets/work-nails-1440.webp 1440w" sizes="(max-width: 767px) 100vw, 42vw">
@@ -218,7 +218,7 @@
         </article>
 
         <article class="work-item interactive-work">
-          <a href="assets/work-barber-1440.jpg" aria-label="View Shoreditch Barbers concept image">
+          <a href="assets/work-barber-1440.jpg" data-concept-link aria-label="Open Shoreditch Barbers concept viewer">
             <div class="work-image image-grade" style="--placeholder:#393734">
               <picture>
                 <source type="image/webp" srcset="assets/work-barber-640.webp 640w, assets/work-barber-960.webp 960w, assets/work-barber-1440.webp 1440w" sizes="(max-width: 767px) 100vw, 42vw">
@@ -230,7 +230,7 @@
         </article>
 
         <article class="work-item work-item-wide interactive-work">
-          <a href="assets/work-spa-1440.jpg" aria-label="View The Spa concept image">
+          <a href="assets/work-spa-1440.jpg" data-concept-link aria-label="Open The Spa concept viewer">
             <div class="work-image image-grade" style="--placeholder:#c9bbac">
               <picture>
                 <source type="image/webp" srcset="assets/work-spa-640.webp 640w, assets/work-spa-960.webp 960w, assets/work-spa-1440.webp 1440w" sizes="(max-width: 767px) 100vw, 66vw">
@@ -358,6 +358,30 @@
       </div>
     </section>
   </main>
+
+  <dialog id="concept-viewer" class="concept-viewer" aria-labelledby="concept-viewer-title">
+    <div class="concept-viewer-shell">
+      <header class="concept-viewer-header">
+        <button class="concept-viewer-back" type="button" data-concept-close>Back to work</button>
+        <span class="concept-viewer-count mono" aria-live="polite">01 / 05</span>
+        <button class="concept-viewer-close" type="button" data-concept-close aria-label="Close concept viewer">Close</button>
+      </header>
+      <div class="concept-viewer-stage">
+        <button class="concept-viewer-nav concept-viewer-prev" type="button" aria-label="View previous concept">Previous</button>
+        <figure class="concept-viewer-figure">
+          <picture>
+            <source class="concept-viewer-source" type="image/webp">
+            <img class="concept-viewer-image" src="assets/work-hair-1440.jpg" width="1440" height="960" alt="">
+          </picture>
+          <figcaption>
+            <h2 id="concept-viewer-title">The Hair Atelier</h2>
+            <p class="concept-viewer-description">Direct bookings and a price list clients can actually find.</p>
+          </figcaption>
+        </figure>
+        <button class="concept-viewer-nav concept-viewer-next" type="button" aria-label="View next concept">Next</button>
+      </div>
+    </div>
+  </dialog>
 
   <footer class="site-footer">
     <div class="footer-top"><strong>ADEEL BUILDS</strong><span>Websites for UK salons &amp; clinics</span></div>

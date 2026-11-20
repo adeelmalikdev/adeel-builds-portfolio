@@ -120,6 +120,24 @@ button { border: 0; }
 .work-caption h3 { margin: 0; font: 600 clamp(1.6rem, 3vw, 2.5rem)/1 var(--display); letter-spacing: -.035em; }
 .work-caption p { grid-column: 1 / -1; margin: .25rem 0 0; max-width: 36rem; }
 
+.viewer-open { overflow: hidden; }
+.concept-viewer { width: 100%; max-width: none; height: 100dvh; max-height: none; margin: 0; padding: 0; border: 0; background: var(--ink); color: var(--ivory); overflow: hidden; }
+.concept-viewer::backdrop { background: rgba(22, 19, 14, .94); backdrop-filter: blur(8px); }
+.concept-viewer-shell { height: 100%; padding: clamp(1rem, 2vw, 2rem); display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 1rem; }
+.concept-viewer-header { min-height: 3rem; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(250, 247, 242, .28); }
+.concept-viewer-header button, .concept-viewer-nav { min-width: 44px; min-height: 44px; padding: .65rem .85rem; border: 1px solid rgba(250, 247, 242, .38); background: transparent; color: var(--ivory); font: 500 .7rem/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; cursor: pointer; transition: background-color .25s ease, color .25s ease, border-color .25s ease; }
+.concept-viewer-header button:hover, .concept-viewer-nav:hover { border-color: var(--ivory); background: var(--ivory); color: var(--ink); }
+.concept-viewer-back { justify-self: start; }
+.concept-viewer-close { justify-self: end; }
+.concept-viewer-count { color: rgba(250, 247, 242, .72); }
+.concept-viewer-stage { min-height: 0; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: clamp(.75rem, 2vw, 2rem); }
+.concept-viewer-figure { min-width: 0; height: 100%; margin: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: .9rem; }
+.concept-viewer-figure picture { min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.concept-viewer-image { width: auto; max-width: 100%; height: auto; max-height: calc(100dvh - 10.5rem); object-fit: contain; }
+.concept-viewer-figure figcaption { display: grid; grid-template-columns: 1fr minmax(14rem, 32rem); align-items: baseline; gap: 1rem; }
+.concept-viewer-figure h2 { margin: 0; font: 600 clamp(1.65rem, 3vw, 3rem)/1 var(--display); letter-spacing: -.04em; }
+.concept-viewer-description { margin: 0; color: rgba(250, 247, 242, .72); font-size: .9rem; }
+
 .offer-section { padding-bottom: 0; background: #f3eee7; }
 .offer-pin { min-height: min(80vh, 50rem); display: grid; grid-template-columns: minmax(9rem, 18vw) minmax(0, 1fr); gap: 1rem; }
 .offer-steps { border-top: 1px solid var(--ink); }
@@ -268,6 +286,16 @@ input[type="range"]::-moz-range-thumb { width: 1rem; height: 1rem; border: 2px s
   .work-item, .work-item-wide, .work-item:nth-child(2), .work-item:nth-child(3), .work-item:nth-child(4), .work-item:nth-child(5) { margin: 0 0 4rem; }
   .work-caption { grid-template-columns: 1fr; }
   .work-caption span { margin-top: .25rem; }
+  .concept-viewer-shell { padding: .75rem; }
+  .concept-viewer-header { grid-template-columns: 1fr auto; }
+  .concept-viewer-count { display: none; }
+  .concept-viewer-stage { grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr) auto; align-items: stretch; gap: .5rem; }
+  .concept-viewer-figure { grid-column: 1 / -1; grid-row: 1; }
+  .concept-viewer-image { max-height: calc(100dvh - 13rem); }
+  .concept-viewer-nav { width: 100%; }
+  .concept-viewer-prev { grid-column: 1; grid-row: 2; }
+  .concept-viewer-next { grid-column: 2; grid-row: 2; }
+  .concept-viewer-figure figcaption { grid-template-columns: 1fr; gap: .35rem; }
   .offer-pin { display: block; min-height: 0; }
   .offer-intro { margin-bottom: 1.5rem; }
   .offer-step { grid-template-columns: 2.5rem 1fr; min-height: auto; }
