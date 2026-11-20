@@ -190,7 +190,9 @@ input[type="range"]::-moz-range-thumb { width: 1rem; height: 1rem; border: 2px s
 .about-portrait picture, .about-portrait img { width: 100%; height: 100%; }
 .about-portrait picture { display: block; }
 .about-portrait img { object-fit: cover; object-position: 50% 32%; }
+.about-identity { margin: 0 0 1rem; color: var(--bronze); font: 500 .75rem/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .about-copy p { margin: 0 0 1.5rem; font-size: clamp(1.25rem, 2.5vw, 2.2rem); line-height: 1.25; letter-spacing: -.025em; }
+.about-links { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; }
 .text-link { display: inline-block; padding-bottom: .25rem; border-bottom: 1px solid var(--ink); font: 500 .75rem/1 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
 
 .testimonials-section { background: var(--ink); color: var(--ivory); }
