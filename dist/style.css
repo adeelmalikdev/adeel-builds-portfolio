@@ -265,7 +265,7 @@ input[type="range"]::-moz-range-thumb { width: 1rem; height: 1rem; border: 2px s
   .hero-kicker > span:first-child { max-width: 16rem; }
   .availability { max-width: 8rem; justify-content: flex-end; text-align: right; }
   .hero h1 { font-size: clamp(3.25rem, 16vw, 5.75rem); line-height: .89; }
-  .hero-badge { right: 0; top: auto; bottom: -8rem; width: 6.8rem; }
+  .hero-badge { position: relative; display: block; right: auto; top: auto; bottom: auto; width: 5.8rem; margin: 1rem 0 0 auto; transform: none; }
   .hero-bottom { margin-top: 2rem; grid-template-columns: 1fr; }
   .hero-actions { justify-content: flex-start; }
   .hero-actions .button { flex: 1 1 45%; }
