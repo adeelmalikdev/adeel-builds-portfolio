@@ -265,21 +265,14 @@ const FORM_ENDPOINT = "";
       gsap.to(media, { yPercent: Number(media.dataset.speed || 0), ease: "none", scrollTrigger: { trigger: media.closest("figure") || media, start: "top bottom", end: "bottom top", scrub: true } });
     });
 
-    ScrollTrigger.matchMedia({
-      "(min-width: 768px)": () => {
-        const steps = gsap.utils.toArray(".offer-step");
-        if (!steps.length) return;
-        gsap.from(steps, {
-          y: 50,
-          opacity: .18,
-          stagger: .22,
-          ease: "power2.out",
-          scrollTrigger: { trigger: ".offer-pin", start: "top 14%", end: "+=520", pin: true, scrub: .5, anticipatePin: 1 }
-        });
-      },
-      "(max-width: 767px)": () => {
-        gsap.utils.toArray(".offer-step").forEach((step) => gsap.from(step, { y: 24, opacity: 0, duration: .75, scrollTrigger: { trigger: step, start: "top 90%", once: true } }));
-      }
+    gsap.utils.toArray(".offer-step").forEach((step) => {
+      gsap.from(step, {
+        y: 24,
+        opacity: 0,
+        duration: .75,
+        ease: "power3.out",
+        scrollTrigger: { trigger: step, start: "top 90%", once: true }
+      });
     });
     initCounters();
   }
