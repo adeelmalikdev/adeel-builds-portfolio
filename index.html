@@ -27,6 +27,7 @@
   <link rel="preload" as="image" href="assets/hero-salon-1440.webp" imagesrcset="assets/hero-salon-640.webp 640w, assets/hero-salon-960.webp 960w, assets/hero-salon-1440.webp 1440w" imagesizes="100vw" fetchpriority="high">
   <link rel="stylesheet" href="style.css">
   <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     document.documentElement.classList.add('js');
     setTimeout(function () {
       if (!document.documentElement.dataset.appReady) {

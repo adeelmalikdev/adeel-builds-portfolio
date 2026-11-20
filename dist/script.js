@@ -4,6 +4,8 @@ const WHATSAPP_NUMBER = "+923019664099";
 const WHATSAPP_LINK = "https://wa.me/923019664099?text=Hi%20Adeel%2C%20I%27m%20interested%20in%20a%20free%20mockup%20for%20my%20salon.";
 const FORM_ENDPOINT = "";
 
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
 (() => {
   "use strict";
 
@@ -15,6 +17,14 @@ const FORM_ENDPOINT = "";
   const headerOffset = () => (header?.offsetHeight || 72) + 10;
   let lenis = null;
   let animationsReady = false;
+  const navigationEntry = performance.getEntriesByType?.("navigation")?.[0];
+  const pageWasReloaded = navigationEntry ? navigationEntry.type === "reload" : performance.navigation?.type === 1;
+
+  function forceScrollTop() {
+    if (window.location.hash) history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    if (lenis) lenis.scrollTo(0, { immediate: true });
+  }
 
   const safeSessionGet = (key) => {
     try { return sessionStorage.getItem(key); } catch (_) { return null; }
@@ -461,6 +471,13 @@ const FORM_ENDPOINT = "";
   }
 
   function boot() {
+    if (pageWasReloaded) forceScrollTop();
+    window.addEventListener("pageshow", () => {
+      if (!pageWasReloaded) return;
+      forceScrollTop();
+      requestAnimationFrame(forceScrollTop);
+      setTimeout(forceScrollTop, 50);
+    });
     root.dataset.appReady = "true";
     root.dataset.brand = BRAND;
     bindAnchors();
