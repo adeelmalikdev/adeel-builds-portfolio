@@ -75,6 +75,8 @@ const FORM_ENDPOINT = "";
   function closeMenu() {
     body.classList.remove("menu-open");
     const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".primary-nav");
+    if (nav && window.innerWidth <= 900) nav.inert = true;
     if (toggle) {
       toggle.setAttribute("aria-expanded", "false");
       toggle.querySelector("span").textContent = "Menu";
@@ -83,19 +85,28 @@ const FORM_ENDPOINT = "";
 
   function initMenu() {
     const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".primary-nav");
     if (!toggle) return;
+    if (nav && window.innerWidth <= 900) nav.inert = true;
     toggle.addEventListener("click", () => {
       const open = !body.classList.contains("menu-open");
       body.classList.toggle("menu-open", open);
+      if (nav) nav.inert = !open;
       toggle.setAttribute("aria-expanded", String(open));
       toggle.querySelector("span").textContent = open ? "Close" : "Menu";
     });
-    window.addEventListener("resize", () => { if (window.innerWidth > 900) closeMenu(); }, { passive: true });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 900) {
+        closeMenu();
+        if (nav) nav.inert = false;
+      } else if (nav && !body.classList.contains("menu-open")) nav.inert = true;
+    }, { passive: true });
   }
 
   function initImages() {
     document.querySelectorAll(".work-image img").forEach((img) => {
-      const show = () => img.classList.add("loaded");
+      if (!img.complete) img.classList.add("is-loading");
+      const show = () => { img.classList.remove("is-loading"); img.classList.add("loaded"); };
       if (img.complete) show(); else img.addEventListener("load", show, { once: true });
     });
   }
@@ -276,6 +287,11 @@ const FORM_ENDPOINT = "";
         if (!panel) return;
         button.setAttribute("aria-expanded", String(!expanded));
         if (expanded) {
+          if (reducedMotion.matches) {
+            panel.hidden = true;
+            panel.style.height = "";
+            return;
+          }
           const height = panel.scrollHeight;
           panel.style.height = `${height}px`;
           panel.getBoundingClientRect();
@@ -284,8 +300,12 @@ const FORM_ENDPOINT = "";
           panel.addEventListener("transitionend", finish);
         } else {
           panel.hidden = false;
+          if (reducedMotion.matches) {
+            panel.style.height = "auto";
+            return;
+          }
           panel.style.height = "0px";
-          panel.style.transition = reducedMotion.matches ? "none" : "height .38s cubic-bezier(.2,.75,.25,1)";
+          panel.style.transition = "height .38s cubic-bezier(.2,.75,.25,1)";
           requestAnimationFrame(() => { panel.style.height = `${panel.scrollHeight}px`; });
           const finish = () => { panel.style.height = "auto"; panel.removeEventListener("transitionend", finish); };
           panel.addEventListener("transitionend", finish);
@@ -383,6 +403,7 @@ const FORM_ENDPOINT = "";
       const visible = heroPast && !contactVisible && !footerVisible && window.innerWidth < 768;
       cta.classList.toggle("is-visible", visible);
       cta.setAttribute("aria-hidden", String(!visible));
+      cta.inert = !visible;
     };
     new IntersectionObserver(([entry]) => { heroPast = !entry.isIntersecting && entry.boundingClientRect.bottom < 0; update(); }, { threshold: 0 }).observe(hero);
     new IntersectionObserver(([entry]) => { contactVisible = entry.isIntersecting; update(); }, { threshold: .08 }).observe(contact);
@@ -391,6 +412,7 @@ const FORM_ENDPOINT = "";
   }
 
   function boot() {
+    root.dataset.appReady = "true";
     root.dataset.brand = BRAND;
     bindAnchors();
     initMenu();
