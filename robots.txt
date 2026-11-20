@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://adeelmalikdev.me/adeel-builds-portfolio/sitemap.xml
+Sitemap: https://www.adeelmalik.dev/sitemap.xml

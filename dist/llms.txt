@@ -1,0 +1,25 @@
+# Adeel Builds
+
+> Adeel Builds is a web design service run by Muhammad Adeel Tariq for UK salons, aesthetics clinics and barbershops. Every project starts with a free homepage mockup, with fixed prices and launch within 14 days of design approval.
+
+## About
+
+- [About Adeel Builds](https://www.adeelmalik.dev/#about): Adeel Builds is run by Muhammad Adeel Tariq and specialises in web design for UK salons, aesthetics clinics and barbershops.
+
+## Services and prices
+
+- [Website packages](https://www.adeelmalik.dev/#prices): Starter £70 fixed — one-page site, booking built in, reviews and prices, and Google Business Profile tidy-up.
+- [Growth website](https://www.adeelmalik.dev/#prices): Growth £100 fixed — multi-page site, service and price pages, review showcase, and WhatsApp booking button.
+- [Care plan](https://www.adeelmalik.dev/#prices): Optional care plan £39/month, no contract, cancel anytime.
+
+## How it works
+
+- [The Adeel Builds offer](https://www.adeelmalik.dev/#offer): Every project starts with a free homepage mockup. The deposit is due only after the client approves the design, and the balance only if they love the finished site. The site goes live within 14 days of approval.
+
+## FAQ
+
+- [Frequently asked questions](https://www.adeelmalik.dev/#faq): Clients keep their existing Treatwell, Fresha, Booksy, Square or Setmore booking. The new website adds direct bookings alongside it.
+
+## Contact
+
+- [Start a project](https://www.adeelmalik.dev/#contact): Email adeelbuilds@gmail.com or WhatsApp +92 301 966 4099.
